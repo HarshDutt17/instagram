@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 import FirebaseContext from "../context/firebase";
 
-
+// useEffect used to create/ force a change with respect to change in rendering of component
 // useNavigate is used to redirect user to another page
 export default function Login(){
     const history = useNavigate();
@@ -22,5 +22,9 @@ export default function Login(){
     }, []);
     
     
-    return(<p>I am the Login Page.</p>)
+    return(
+        <div className="container flex mx-auto max-w-screen-md items-center h-screen">
+            <p> Tailwind CSS check</p>
+        </div>
+    )
 }
