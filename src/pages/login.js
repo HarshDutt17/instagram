@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import FirebaseContext from "../context/firebase";
+import * as ROUTES from '../constants/routes';
 
 // useEffect used to create/ force a change with respect to change in rendering of component
 // useNavigate is used to redirect user to another page
@@ -15,7 +16,18 @@ export default function Login(){
 
     const isInvalid = password == '' || emailAddress== '';
 
-    const handleLogin = () => {};
+    const handleLogin = async (event) => {
+        event.preventDefault();
+
+        try {
+            await firebase.auth().signInWithEmailAndPassword(emailAddress,password);
+            history(ROUTES.DASHBOARD);
+        } catch (error) {
+            setEmailAddress('');
+            setPassword('');
+            setError(error.message);
+        }
+    };
 
     useEffect(() => {
       document.title = 'Login - Instagram';
@@ -68,7 +80,7 @@ export default function Login(){
 
                 <div className="flex justify-center item-center flex-col w-full bg-white p-4 border border-gray-primary rounded">
                     <p className="text-sm">Don't have an account?{` `}
-                        <Link to="/signup" className="font-bold text-blue-medium">
+                        <Link to={ROUTES.SIGN_UP} className="font-bold text-blue-medium">
                             Sign Up
                         </Link>
                     </p>
