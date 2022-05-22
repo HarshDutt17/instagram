@@ -3,13 +3,13 @@ import FirebaseContext from "../context/firebase";
 import UserContext from "../context/user";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
-import { getAuth } from "firebase/auth";
 
 export default function Header() {
-    const firebase = useContext(FirebaseContext);
+    const firebasetop = useContext(FirebaseContext);
     const usertop = useContext(UserContext);
-
-    const user = usertop.user.user;   
+    const firebase =firebasetop.firebase;
+    const user = usertop.user; 
+    // console.log(firebase)  ;
     // context provider encapsulate the content therefore we need to decapsulate the content
     // console.log(user);    
 
@@ -38,7 +38,7 @@ export default function Header() {
                                     <button
                                         type="button"
                                         title="Sign Out"
-                                        onClick={() => firebase.auth.signOut().then(() => { })}
+                                        onClick={() => firebase.auth().signOut().then(() => { })}
                                         onKeyDown={(event) => {
                                             if (event.key == 'Enter') {
                                                 firebase.auth().signOut();
@@ -62,7 +62,12 @@ export default function Header() {
                                 </>
                             ) : (
                                 <>
-                                    bye
+                                    <Link to={ROUTES.LOGIN}>
+                                        <button type="button" className="bg-blue-medium font-bold text-sm rounded text-white w-20 h-8">Login</button>
+                                    </Link>
+                                    <Link to={ROUTES.SIGN_UP}>
+                                        <button type="button" className="font-bold text-sm rounded text-blue-medium w-20 h-8">Sign Up</button>
+                                    </Link>
                                 </>
                             )
                         }
