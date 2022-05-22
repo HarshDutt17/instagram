@@ -34,6 +34,8 @@ export default function SignUp(){
                 // authentication
                     // -> we are sending emailaddress and password and username (displayname)
 
+                console.log(createdUserResult, createdUserResult.user)
+                    
                 await createdUserResult.user.updateProfile({
                     displayName: username
                 });
@@ -50,6 +52,16 @@ export default function SignUp(){
                 })
 
                 history(ROUTES.DASHBOARD);
+                // firebase.auth().onAuthStateChanged(function(user) {
+                //     if (user) {
+                //       user.updateProfile({
+                //           displayName: username
+                //       })
+                //     } else {
+                //       // No user is signed in.
+                //     }
+                //   });
+
             } 
             
             catch (error) {
