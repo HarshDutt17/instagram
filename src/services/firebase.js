@@ -23,6 +23,8 @@ export async function getUserByUserId(userId) {
         docId : item.id
     }));
 
+    // console.log(user);
+
     return user;
 }
 
@@ -59,4 +61,35 @@ export async function updateFollowedUserFollowers( profileDocId, userId, isFollo
     .update({
         followers : isFollowingProfile ? FieldValue.arrayRemove(userId) : FieldValue.arrayUnion(userId)
     });
+}
+
+export async function getPhotos(userId, following) {
+    const result = await firebase
+    .firestore()
+    .collection('photos')
+    .where('userId','in',following)
+    // userId here is in string which means it is checking field in firestore named userId, Note: its not using the passed on UserId
+    .get();
+
+    // console.log(result)
+    const userFollowedPhotos = result.docs.map( (photo) => ({
+        ...photo.data(),
+        docId: photo.id
+    }) );
+
+    const photosWithUserDetails = await Promise.all(
+        userFollowedPhotos.map(async (photo) => {
+            let userLikedPhoto = false;
+            if (photo.likes.includes(userId)){
+                userLikedPhoto = true;
+            }
+
+            const user = await getUserByUserId(photo.userId);
+            const { username } = user[0];
+
+            return { username, ...photo , userLikedPhoto };
+        })
+    )
+
+    return photosWithUserDetails;
 }
