@@ -1,14 +1,15 @@
 import { useContext } from "react";
 import FirebaseContext from "../context/firebase";
 import UserContext from "../context/user";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
 
 export default function Header() {
-    const firebasetop = useContext(FirebaseContext);
-    const usertop = useContext(UserContext);
-    const firebase =firebasetop.firebase;
-    const user = usertop.user; 
+    const { firebase } = useContext(FirebaseContext);
+    const { user } = useContext(UserContext);
+    const history = useNavigate();
+    // const firebase =firebasetop.firebase;
+    // const user = usertop.user; 
     // console.log(firebase)  ;
     // context provider encapsulate the content therefore we need to decapsulate the content
     // console.log(user);    
@@ -21,7 +22,7 @@ export default function Header() {
                     <div className="text-gray-700 text-center flex items-center cursor-pointer">
                         <h1 className="flex justify-center w-full">
                             <Link to={ROUTES.DASHBOARD} aria-label="Instagram logo">
-                                <img src="/images/logo.png" alt="Instagram" className="mt-2 w-6/12" />
+                                <img src="/images/logo.png" alt="Instagram" className="mt-2 w-6/12 md:mx-2" />
                             </Link>
                         </h1>
                     </div>
@@ -38,10 +39,11 @@ export default function Header() {
                                     <button
                                         type="button"
                                         title="Sign Out"
-                                        onClick={() => firebase.auth().signOut().then(() => { })}
+                                        onClick={() => firebase.auth().signOut().then(() => { history(ROUTES.LOGIN)})}
                                         onKeyDown={(event) => {
                                             if (event.key == 'Enter') {
                                                 firebase.auth().signOut();
+                                                history(ROUTES.LOGIN);
                                             }
                                         }}
                                     >
@@ -49,7 +51,7 @@ export default function Header() {
                                             <path fillRule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clipRule="evenodd" />
                                         </svg>
                                     </button>
-                                    <div className="flex items-center cursor-pointer">
+                                    <div className="flex items-center cursor-pointer md:pr-2">
                                         <Link to={`/p/${user.displayName}`}>
                                             <img
                                                 className="rounded-full h-8 w-8 flex"

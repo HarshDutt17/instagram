@@ -4,6 +4,7 @@ module.exports = {
     removeDeprecatedGapUtilities: true
   },
 
+
   theme: {
     fill: (theme) => ({
       red: theme('colors.red.primary')
@@ -11,20 +12,28 @@ module.exports = {
     colors: {
       white: '#ffffff',
       blue: {
-          medium: '#005c98'
+        medium: '#005c98'
       },
       black: {
-          light: '#262626',
-          faded: '#00000059'
+        light: '#262626',
+        faded: '#00000059'
       },
       gray: {
-          base: '#616161',
-          background: '#fafafa',
-          primary: '#dbdbdb'
+        base: '#616161',
+        background: '#fafafa',
+        primary: '#dbdbdb'
       },
       red: {
-          primary: '#ed4956'
+        primary: '#ed4956'
       }
+    },
+    extend: {
+      screens: {
+
+        'mobiles': { 'max': '767px' },
+        // => @media (max-width: 767px) { ... }
+
+      },
     },
   },
 

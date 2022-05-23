@@ -81,19 +81,23 @@ export default function SignUp(){
 
     useEffect(() => {
       document.title = 'Sign Up - Instagram';
+      const userExists = localStorage.getItem('authUser');
+      if(userExists){
+          history(ROUTES.DASHBOARD);
+      };
     }, []);
     
     
     return(
-        <div className="container flex mx-auto max-w-screen-md items-center h-screen">
-            <div className="flex w-3/5">
+        <div className="container flex mx-auto max-w-screen-md items-center h-screen mobiles:flex-col">
+            <div className="flex w-3/5 mobiles:hidden">
                 <img src="/images/iphoneinsta.jpg" alt="iPhone image"/>
             </div>
-            <div className="flex flex-col w-2/5">
+            <div className="flex flex-col w-2/5 mobiles:w-5/6 mobiles:my-auto">
 
-                <div className="flex flex-col items-center bg-white p-4 border border-gray-primary mb-4 rounded">
+                <div className="flex flex-col items-center bg-white p-4 border border-gray-primary mb-4 rounded mobiles:pb-8">
 
-                    <h1 className="flex justify-center w-full">
+                    <h1 className="flex justify-center w-full mobiles:my-4">
                         <img src="/images/logo.png" alt="Instagram" className="mt-2 w-6/12 "/>
                     </h1>
                     {error && <p className="mb-4 text-xs text-red-primary">{error}</p>}
@@ -138,7 +142,7 @@ export default function SignUp(){
                             disabled={isInvalid}
                             type="submit"
                             className={` 
-                            bg-blue-medium  text-white w-full rounded h-8 font-bold 
+                            bg-blue-medium  text-white w-full rounded h-8 font-bold mobiles:mt-2
                             ${isInvalid && `opacity-50`}     
                         `}>
                                 Sign Up
