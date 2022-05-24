@@ -15,8 +15,15 @@ export default function AddComment({ docId, comments, setComments, commentInput 
         event.preventDefault();
 
         setComments( [{ displayName, comment}, ...comments]);
+        setComment('');
 
-        return null;
+        return firebase
+            .firestore()
+            .collection('photos')
+            .doc(docId)
+            .update({
+                comments: FieldValue.arrayUnion( { displayName, comment})
+            });
     };
 
     return (

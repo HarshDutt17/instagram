@@ -6,6 +6,7 @@ import UserContext from './context/user';
 import './styles/app.css';
 
 const Login = lazy(() => import('./pages/login'));
+const Profile = lazy(() => import('./pages/profile'));
 const SignUp = lazy(() => import('./pages/sign-up'));
 const NotFound = lazy(() => import('./pages/not-found'));
 const Dashboard = lazy(() => import('./pages/dashboard'));
@@ -23,6 +24,7 @@ function App() {
             <Route path={ROUTES.LOGIN} element={<Login />} />
             <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
             <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
+            <Route path={ROUTES.PROFILE} element={<PROFILE />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

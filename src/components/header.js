@@ -7,7 +7,7 @@ import * as ROUTES from "../constants/routes";
 export default function Header() {
     const { firebase } = useContext(FirebaseContext);
     const { user } = useContext(UserContext);
-    const history = useNavigate();
+    // const history = useNavigate();
     // const firebase =firebasetop.firebase;
     // const user = usertop.user; 
     // console.log(firebase)  ;
@@ -39,11 +39,11 @@ export default function Header() {
                                     <button
                                         type="button"
                                         title="Sign Out"
-                                        onClick={() => firebase.auth().signOut().then(() => { history(ROUTES.LOGIN)})}
+                                        onClick={() => firebase.auth().signOut().then()}
                                         onKeyDown={(event) => {
                                             if (event.key == 'Enter') {
                                                 firebase.auth().signOut();
-                                                history(ROUTES.LOGIN);
+                                                // history(ROUTES.LOGIN);
                                             }
                                         }}
                                     >
