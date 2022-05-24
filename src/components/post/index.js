@@ -30,7 +30,6 @@ export default function Post( {content} ){
                 posted={content.dateCreated}
                 commentInput={commentInput}
             />
-            
         </div>
     )
 }

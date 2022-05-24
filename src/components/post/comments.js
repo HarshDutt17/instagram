@@ -2,11 +2,13 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { formatDistance } from "date-fns";
+import AddComment from "./add-comment";
 
-export default function Comments ( {docId, comments: allComments, posted, commentInput} ){
-    const [comments, setcomments] = useState(allComments);
+
+export default function Comments({ docId, comments: allComments, posted, commentInput }) {
+    const [comments, setComments] = useState(allComments);
     // console.log(comments);
-    return(
+    return (
         <>
             <div className="p-4 pt-1 pb-4">
                 {comments.length >= 3 && (
@@ -28,6 +30,12 @@ export default function Comments ( {docId, comments: allComments, posted, commen
                     {formatDistance(posted, new Date())} ago
                 </p>
             </div>
+            <AddComment
+                docId={docId}
+                comments={comments}
+                setComments={setComments}
+                commentInput={commentInput}
+            />
         </>
     )
 }
@@ -36,5 +44,5 @@ Comments.propTypes = {
     docId: PropTypes.string.isRequired,
     comments: PropTypes.array.isRequired,
     posted: PropTypes.number.isRequired,
-    commentInput: PropTypes.object.isRequired,  
+    commentInput: PropTypes.object.isRequired,
 }
