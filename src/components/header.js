@@ -4,6 +4,8 @@ import UserContext from "../context/user";
 import { Link, useNavigate } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
 
+import avatarsUrl from "../helper/avatarsUrl";
+
 export default function Header() {
     const { firebase } = useContext(FirebaseContext);
     const { user } = useContext(UserContext);
@@ -55,7 +57,7 @@ export default function Header() {
                                         <Link to={`/p/${user.displayName}`}>
                                             <img
                                                 className="rounded-full h-8 w-8 flex"
-                                                src={`/images/avatars/${user.displayName}.jpg`}
+                                                src={avatarsUrl(user.displayName)}
                                                 onError={({ currentTarget }) => {
                                                     currentTarget.onError = null;
                                                     currentTarget.src = "/images/avatars/default.jpg";

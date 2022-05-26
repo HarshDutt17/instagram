@@ -1,0 +1,16 @@
+import { ref, getDownloadURL } from "firebase/storage";
+import { useEffect, useState } from "react";
+import { storage } from "../lib/firebase";
+
+export default function avatarsUrl(username) {
+    const [imgUrl, setImgUrl] = useState('')
+    const avatarPathRef = ref(storage, `avatars/${username}.jpg`)
+
+    useEffect(() => {
+        getDownloadURL(avatarPathRef).then( (url) => {
+            setImgUrl(url);
+        })
+    }, [])
+
+    return imgUrl;
+}

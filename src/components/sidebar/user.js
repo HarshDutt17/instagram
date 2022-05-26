@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { memo } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import PropTypes from "prop-types";
+import avatarsUrl from "../../helper/avatarsUrl";
 
 
 const User = ({ username, fullName }) =>
@@ -12,7 +13,7 @@ const User = ({ username, fullName }) =>
             <div className="flex items-center justify-between col-span-1">
                 <img
                     className="rounded-full w-16 flex mr-3"
-                    src={`/images/avatars/${username}.jpg`}
+                    src={avatarsUrl(username)}
                     alt={`${username} avatar`}
                     onError={({ currentTarget }) => {
                         currentTarget.onError = null;

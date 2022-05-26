@@ -1,8 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
 import useUser from "../../hooks/use-users";
 import { isUserFollowingProfile, toggleFollow } from "../../services/firebase";
+
+import { storage } from "../../lib/firebase";
+import { ref, uploadBytes } from "firebase/storage";
+
+import avatarsUrl from "../../helper/avatarsUrl";
 
 
 export default function Header({
@@ -17,7 +22,11 @@ export default function Header({
     const [isFollowingProfile, setisFollowingProfile] = useState(false);
     const activeBtnFollow = user.username && user.username != profileUsername;
 
-    const handleToggleFollow = async() => {
+    const imageInput = useRef(null);
+    const [avatarImage, setavatarImage] = useState(null)
+
+
+    const handleToggleFollow = async () => {
         setisFollowingProfile(() => !isFollowingProfile);
 
         setFollowerCount({
@@ -26,6 +35,18 @@ export default function Header({
 
         await toggleFollow(isFollowingProfile, user.docId, profileDocId, profileUserId, user.userId);
     };
+
+    const changeAvatar = () => {
+        imageInput.current.click();
+    }
+
+    const uploadImage = () => {
+        if (avatarImage == null) return;
+        const imageRef = ref(storage, `avatars/${user.username}.jpg`)
+        uploadBytes(imageRef, avatarImage).then(() => {
+            alert('Avatar uploaded')
+        })
+    }
 
     useEffect(() => {
         const isLoggedInUserFollowingProfile = async () => {
@@ -38,20 +59,42 @@ export default function Header({
             isLoggedInUserFollowingProfile();
         }
 
-    }, [user.username, profileUserId])
+        if (avatarImage) {
+            uploadImage();
+        }
+
+    }, [user.username, profileUserId, avatarImage])
 
     return (
         <div className="grid grid-cols-3 gap-4 justify-between mx-auto max-w-screen-lg">
             <div className="container flex justify-center">
-                <img
-                    className="rounded-full h-40 w-40 flex"
-                    alt={`${profileUsername}-avatar`}
-                    src={`/images/avatars/${profileUsername}.jpg`}
-                    onError={({ currentTarget }) => {
-                        currentTarget.onError = null;
-                        currentTarget.src = "/images/avatars/default.jpg";
-                    }}
-                />
+                <div className="relative group">
+                    <img
+                        className="rounded-full h-40 w-40 flex"
+                        alt={`${profileUsername}-avatar`}
+                        src={avatarsUrl(profileUsername)}
+                        onError={event => {
+                            event.target.src = "/images/avatars/default.jpg";
+                            event.onerror = null;
+                        }}
+                    />
+
+                    {/* letting the user Change only his avatar  */}
+                    {user.username == profileUsername && (
+                        <div
+                            className="absolute rounded-full bottom-0 left-0 bg-white/50 text-white z-10 w-full justify-center items-center h-full bg-black-faded group-hover:flex group-hover:flex-col hidden"
+                            onClick={changeAvatar}
+                        >
+                            <p className="text-bolder text-xl text-center">Change avatar</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <input type="file" className="hidden" ref={imageInput} onChange={(event) => { setavatarImage(event.target.files[0]); }} />
+                        </div>
+
+                    )}
+                </div>
             </div>
             <div className="flex items-center justify-center flex-col col-span-2">
                 <div className="container flex items-center">
@@ -89,7 +132,7 @@ export default function Header({
                     )}
                 </div>
                 <div className="container mt-4">
-                    <p className="font-medium">{!fullName ? <Skeleton count={1} height={24} /> : `${fullName}` }</p>
+                    <p className="font-medium">{!fullName ? <Skeleton count={1} height={24} /> : `${fullName}`}</p>
                 </div>
             </div>
         </div>

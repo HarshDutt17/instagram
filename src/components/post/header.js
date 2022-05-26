@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types"; 
+import avatarsUrl from "../../helper/avatarsUrl";
 
 export default function Header( {username }){
     return(
@@ -8,7 +9,7 @@ export default function Header( {username }){
                 <Link to={`/p/${username}`} className="flex items-center">
                     <img 
                         className="rounded-full h-8 w-8 flex mr-3"
-                        src={`/images/avatars/${username}.jpg`}
+                        src={avatarsUrl(username)}
                         alt={`${username} avatar `}
                         onError={({ currentTarget }) => {
                             currentTarget.onError = null;

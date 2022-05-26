@@ -1,6 +1,7 @@
 import PropTypes, { func } from 'prop-types';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import avatarsUrl from '../../helper/avatarsUrl';
 import { updateLoggedInUserFollowing, updateFollowedUserFollowers } from '../../services/firebase';
 
 export default function SuggestedProfile({ profileDocId, username, profileId, userId, loggedInUserDocId }) {
@@ -21,7 +22,7 @@ export default function SuggestedProfile({ profileDocId, username, profileId, us
             <div className='flex items-center justify-between'>
                 <img
                     className='rounded-full w-8 flex mr-3'
-                    src={`/images/avatars/${username}.jpg`}
+                    src={avatarsUrl(username)}
                     alt=""
                     onError={({ currentTarget }) => {
                         currentTarget.onError = null;
