@@ -23,6 +23,11 @@ function App() {
       <Router>
         <Suspense fallback={
           <div className='flex flex-col justify-center items-center h-screen'>
+            <img
+              src='/images/loading.jpg'
+              alt='Loading..'
+              width={320}
+            />
             <p className='text-2xl'>Loading</p>
           </div>
         }>
