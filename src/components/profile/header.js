@@ -47,6 +47,10 @@ export default function Header({
                     className="rounded-full h-40 w-40 flex"
                     alt={`${profileUsername}-avatar`}
                     src={`/images/avatars/${profileUsername}.jpg`}
+                    onError={({ currentTarget }) => {
+                        currentTarget.onError = null;
+                        currentTarget.src = "/images/avatars/default.jpg";
+                    }}
                 />
             </div>
             <div className="flex items-center justify-center flex-col col-span-2">

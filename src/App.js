@@ -19,9 +19,13 @@ function App() {
   const user = useAuthListener();
 
   return (
-    <UserContext.Provider value= {user}  >
+    <UserContext.Provider value={user}  >
       <Router>
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={
+          <div className='flex flex-col justify-center items-center h-screen'>
+            <p className='text-2xl'>Loading</p>
+          </div>
+        }>
           <Routes>
             <Route path={ROUTES.LOGIN} element={<Login />} />
             <Route path={ROUTES.SIGN_UP} element={<SignUp />} />

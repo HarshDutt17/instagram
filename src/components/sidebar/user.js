@@ -13,11 +13,16 @@ const User = ({ username, fullName }) =>
                 <img
                     className="rounded-full w-16 flex mr-3"
                     src={`/images/avatars/${username}.jpg`}
-                    alt={`${username} avatar`} />
+                    alt={`${username} avatar`}
+                    onError={({ currentTarget }) => {
+                        currentTarget.onError = null;
+                        currentTarget.src = "/images/avatars/default.jpg";
+                    }}
+                />
             </div>
             <div className="col-span-3">
                 <p className="font-bold text-sm">{username}</p>
-                <p className="text-sm text-gray-base">{fullName}</p>                
+                <p className="text-sm text-gray-base">{fullName}</p>
             </div>
         </Link>
     );

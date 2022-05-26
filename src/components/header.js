@@ -56,6 +56,10 @@ export default function Header() {
                                             <img
                                                 className="rounded-full h-8 w-8 flex"
                                                 src={`/images/avatars/${user.displayName}.jpg`}
+                                                onError={({ currentTarget }) => {
+                                                    currentTarget.onError = null;
+                                                    currentTarget.src = "/images/avatars/default.jpg";
+                                                }}
                                                 alt={`${user.displayName} profile`}
                                             />
                                         </Link>

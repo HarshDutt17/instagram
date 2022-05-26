@@ -23,6 +23,10 @@ export default function SuggestedProfile({ profileDocId, username, profileId, us
                     className='rounded-full w-8 flex mr-3'
                     src={`/images/avatars/${username}.jpg`}
                     alt=""
+                    onError={({ currentTarget }) => {
+                        currentTarget.onError = null;
+                        currentTarget.src = "/images/avatars/default.jpg";
+                    }}
                 />
                 <Link to={`/p/${username}`}>
                     <p className='font-bold text-sm'>
