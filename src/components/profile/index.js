@@ -23,7 +23,7 @@ export default function Profile({ user }) {
             // console.log('photos', photos)
             dispatch({ profile: user, photosCollection: photos, followerCount: user.followers.length });
         }
-        
+
         if (user) {
             getProfileInfoAndPhotos();
         }
@@ -38,7 +38,6 @@ export default function Profile({ user }) {
                 setFollowerCount={dispatch}
             />
             <Photos photos={photosCollection} />
-            <p> hello {user.username}</p>
         </>
     )
 }

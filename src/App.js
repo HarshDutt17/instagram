@@ -4,6 +4,8 @@ import * as ROUTES from './constants/routes';
 import useAuthListener from './hooks/use-auth-listener';
 import UserContext from './context/user';
 import './styles/app.css';
+import 'react-loading-skeleton/dist/skeleton.css'
+
 
 const Login = lazy(() => import('./pages/login'));
 const Profile = lazy(() => import('./pages/profile'));
