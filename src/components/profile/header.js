@@ -70,9 +70,9 @@ export default function Header({
     return (
         <div className="grid grid-cols-3 gap-4 justify-between mx-auto max-w-screen-lg">
             <div className="container flex justify-center">
-                <div className="relative group">
+                <div className="relative group mobiles:h-32">
                     <img
-                        className="rounded-full h-40 w-40 flex"
+                        className="rounded-full h-40 w-40 flex mobiles:h-32 mobiles:w-32"
                         alt={`${profileUsername}-avatar`}
                         src={avatarPath}
                         onError={event => {
@@ -84,7 +84,7 @@ export default function Header({
                     {/* letting the user Change only his avatar  */}
                     {user.username == profileUsername && (
                         <div
-                            className="absolute rounded-full bottom-0 left-0 bg-white/50 text-white z-10 w-full justify-center items-center h-full bg-black-faded group-hover:flex group-hover:flex-col hidden"
+                            className="absolute rounded-full  bottom-0 left-0 bg-white/50 text-white z-10 w-full justify-center items-center h-full bg-black-faded group-hover:flex group-hover:flex-col hidden"
                             onClick={changeAvatar}
                         >
                             <p className="text-bolder text-xl text-center">Change avatar</p>
@@ -116,25 +116,25 @@ export default function Header({
                         </button>
                     )}
                 </div>
-                <div className="container flex mt-4">
+                <div className="container flex mt-4 mobiles:mt-1">
                     {followers == undefined || following == undefined ? (
                         <Skeleton count={1} width={677} height={24} />
                     ) : (
                         <>
-                            <p className="mr-10">
+                            <p className="mr-10 mobiles:mr-8">
                                 <span className="font-bold">{photosCount} </span>{` `}{photosCount == 1 ? 'Post' : 'Posts'}
                             </p>
-                            <p className="mr-10">
+                            <p className="mr-10 mobiles:mr-8">
                                 <span className="font-bold">{followerCount} </span>{` `}{followerCount == 1 ? 'Follower' : 'Followers'}
                             </p>
-                            <p className="mr-10">
+                            <p className="mr-10 mobiles:mr-8">
                                 <span className="font-bold">{following.length} </span>{` `}Following
                             </p>
                         </>
                     )}
                 </div>
-                <div className="container mt-4">
-                    <p className="font-medium">{!fullName ? <Skeleton count={1} height={24} /> : `${fullName}`}</p>
+                <div className="container mt-4 mobiles:mt-1">
+                    <p className="font-medium text-xl">{!fullName ? <Skeleton count={1} height={24} /> : `${fullName}`}</p>
                 </div>
             </div>
         </div>

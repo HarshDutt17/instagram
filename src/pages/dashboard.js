@@ -10,7 +10,7 @@ export default function Dashboard() {
     const userExists = localStorage.getItem('authUser');
 
     useEffect(() => {
-        document.title = 'Instagram';
+        document.title = 'Instakilogram';
         // console.log(userExists);
         if (!userExists) {
             history(ROUTES.LOGIN)

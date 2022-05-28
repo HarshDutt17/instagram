@@ -82,7 +82,7 @@ export default function SignUp(){
     };
 
     useEffect(() => {
-      document.title = 'Sign Up - Instagram';
+      document.title = 'Sign Up - Instakilogram';
       const userExists = localStorage.getItem('authUser');
       if(userExists){
           history(ROUTES.DASHBOARD);

@@ -17,16 +17,16 @@ export default function Header() {
     // const user = usertop.user; 
     // console.log(firebase)  ;
     // context provider encapsulate the content therefore we need to decapsulate the content
-    
+
 
     return (
         <header className="h-16 bg-white border-b border-gray-primary mb-8">
             <div className="container mx-auto max-w-screen-lg h-full">
                 <div className="flex justify-between h-full">
                     <div className="text-gray-700 text-center flex items-center cursor-pointer">
-                        <h1 className="flex justify-center w-full mobiles:mx-2">
+                        <h1 className="flex justify-center w-full">
                             <Link to={ROUTES.DASHBOARD} aria-label="Instagram logo">
-                                <img src="/images/logo.png" alt="Instagram" className="mt-2 w-6/12 md:mx-2" />
+                                <img src="/images/logo.png" alt="Instagram" className="mt-2 w-1/2 mobiles:mx-2 mobiles:w-7/12" />
                             </Link>
                         </h1>
                     </div>
@@ -67,19 +67,17 @@ export default function Header() {
                                         </svg>
                                     </button>
 
-                                    <div className="flex items-center cursor-pointer md:pr-2">
-                                        <Link to={`/p/${user.displayName}`}>
-                                            <img
-                                                className="rounded-full h-8 w-8 flex"
-                                                src={avatarPath}
-                                                onError={({ currentTarget }) => {
-                                                    currentTarget.onError = null;
-                                                    currentTarget.src = "/images/avatars/default.jpg";
-                                                }}
-                                                alt={`${user.displayName} profile`}
-                                            />
-                                        </Link>
-                                    </div>
+                                    <Link to={`/p/${user.displayName}`}>
+                                        <img
+                                            className="rounded-full h-8 w-8 flex mr-8"
+                                            src={avatarPath}
+                                            onError={({ currentTarget }) => {
+                                                currentTarget.onError = null;
+                                                currentTarget.src = "/images/avatars/default.jpg";
+                                            }}
+                                            alt={`${user.displayName} profile`}
+                                        />
+                                    </Link>
 
                                 </>
                             ) : (
@@ -96,7 +94,7 @@ export default function Header() {
                     </div>
                 </div>
             </div>
-            {createP && <CreatePost createP={createP} setCreateP={setCreateP} userId={user.uid}/>}
+            {createP && <CreatePost createP={createP} setCreateP={setCreateP} userId={user.uid} />}
         </header>
     )
 }

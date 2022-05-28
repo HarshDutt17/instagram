@@ -4,8 +4,8 @@ import Skeleton from 'react-loading-skeleton';
 export default function Photos({ photos }) {
     // console.log(photos)
     return (
-        <div className='h-16 border-t border-gray-primary mt-12 pt-4'>
-            <div className='grid grid-cols-3 gap-8 mt-4 mb-12'>
+        <div className='h-16 border-t border-gray-primary mt-12 mobiles:mt-6 pt-4'>
+            <div className='grid grid-cols-3 gap-8 mobiles:gap-2 mt-4 mobiles:mt-2 mb-12'>
                 {!photos ? (
                     <div className='flex col-span-3 mx-auto'>
                         <Skeleton count={1} height={320} width={320} className='mx-2' />

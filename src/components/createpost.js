@@ -51,8 +51,8 @@ export default function CreatePost({ createP, setCreateP, userId }) {
 
 
     return createP ? (
-        <div className="absolute top-0 h-full w-full flex justify-center items-center bg-gray-200/50">
-            <div className="relative w-2/5 text-center flex-col justify-center items-center bg-white py-4 rounded-2xl ">
+        <div className="absolute top-0 h-full w-full flex justify-center items-center bg-gray-200/50 z-20">
+            <div className="relative w-2/5 mobiles:w-3/4 text-center flex-col justify-center items-center bg-white py-4 rounded-2xl ">
                 <div className="pb-4 border-b-2 w-full">
                     <p
                         className="text-xl font-bold px-10"

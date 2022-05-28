@@ -30,7 +30,7 @@ export default function Login(){
     };
 
     useEffect(() => {
-      document.title = 'Login - Instagram';
+      document.title = 'Login - Instakilogram';
       const userExists = localStorage.getItem('authUser');
       if(userExists){
           history(ROUTES.DASHBOARD)
