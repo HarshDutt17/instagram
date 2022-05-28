@@ -658,6 +658,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 2rem;
 }
 
+.mr-28 {
+  margin-right: 7rem;
+}
+
 .flex {
   display: flex;
 }
@@ -998,6 +1002,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 1rem;
 }
 
+.pr-32 {
+  padding-right: 8rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -1096,6 +1104,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (max-width: 767px) {
+  .mobiles\:visible {
+    visibility: visible;
+  }
+
   .mobiles\:col-span-3 {
     grid-column: span 3 / span 3;
   }
@@ -1113,6 +1125,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   .mobiles\:my-4 {
     margin-top: 1rem;
     margin-bottom: 1rem;
+  }
+
+  .mobiles\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .mobiles\:mx-8 {
+    margin-left: 2rem;
+    margin-right: 2rem;
   }
 
   .mobiles\:mt-2 {
@@ -1133,6 +1155,30 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .mobiles\:mr-2 {
     margin-right: 0.5rem;
+  }
+
+  .mobiles\:mr-10 {
+    margin-right: 2.5rem;
+  }
+
+  .mobiles\:mr-20 {
+    margin-right: 5rem;
+  }
+
+  .mobiles\:mr-24 {
+    margin-right: 6rem;
+  }
+
+  .mobiles\:mr-28 {
+    margin-right: 7rem;
+  }
+
+  .mobiles\:block {
+    display: block;
+  }
+
+  .mobiles\:flex {
+    display: flex;
   }
 
   .mobiles\:hidden {
@@ -1179,8 +1225,28 @@ Ensure the default browser behavior of the `hidden` attribute.
     width: 75%;
   }
 
+  .mobiles\:w-screen {
+    width: 100vw;
+  }
+
   .mobiles\:flex-col {
     flex-direction: column;
+  }
+
+  .mobiles\:justify-center {
+    justify-content: center;
+  }
+
+  .mobiles\:justify-between {
+    justify-content: space-between;
+  }
+
+  .mobiles\:justify-around {
+    justify-content: space-around;
+  }
+
+  .mobiles\:justify-evenly {
+    justify-content: space-evenly;
   }
 
   .mobiles\:gap-2 {

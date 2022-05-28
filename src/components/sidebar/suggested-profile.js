@@ -20,10 +20,10 @@ export default function SuggestedProfile({ profileDocId, username, profileId, us
     const avatarPath = avatarsUrl(username);
 
     return !followed ? (
-        <div className='flex flex-row items-center justify-between'>
+        <div className='flex flex-row items-center justify-between mobiles:justify-between mobiles:mx-8'>
             <div className='flex items-center justify-between'>
                 <img
-                    className='rounded-full w-8 flex mr-3'
+                    className='rounded-full h-8 w-8 flex mr-3'
                     src={avatarPath}
                     alt=""
                     onError={({ currentTarget }) => {

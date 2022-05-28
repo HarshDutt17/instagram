@@ -8,6 +8,7 @@ import { storage } from "../../lib/firebase";
 import { ref, uploadBytes } from "firebase/storage";
 
 import avatarsUrl from "../../helper/avatarsUrl";
+import useAuthListener from "../../hooks/use-auth-listener";
 
 
 export default function Header({
@@ -19,8 +20,10 @@ export default function Header({
     }
 }) {
     const { user } = useUser();
+    const { user: authUser} = useAuthListener(); 
+    
     const [isFollowingProfile, setisFollowingProfile] = useState(false);
-    const activeBtnFollow = user.username && user.username != profileUsername;
+    const activeBtnFollow = authUser && user?.username && user.username != profileUsername;
 
     const imageInput = useRef(null);
     const [avatarImage, setavatarImage] = useState(null)
