@@ -34,7 +34,7 @@ export default function SignUp(){
                 // authentication
                     // -> we are sending emailaddress and password and username (displayname)
 
-                console.log(createdUserResult, createdUserResult.user)
+                // console.log(createdUserResult, createdUserResult.user)
                     
                 await createdUserResult.user.updateProfile({
                     displayName: username

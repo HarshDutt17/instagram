@@ -6,11 +6,9 @@ export default function avatarsUrl(username) {
     const [imgUrl, setImgUrl] = useState('')
     const avatarPathRef = ref(storage, `avatars/${username}.jpg`)
 
-    useEffect(() => {
-        getDownloadURL(avatarPathRef).then( (url) => {
-            setImgUrl(url);
-        })
-    }, [])
+    getDownloadURL(avatarPathRef).then((url) => {
+        setImgUrl(url);
+    });
 
     return imgUrl;
 }

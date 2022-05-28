@@ -8,7 +8,7 @@ export default function NotFound() {
     }, []);
     
     return (
-        <div className="bg-gray-700">
+        <div className="bg-gray-100 h-screen">
             <Header />
             <div className="mx-auto max-w-screen-lg flex flex-col justify-center items-center pt-2 gap-4">
                 <img

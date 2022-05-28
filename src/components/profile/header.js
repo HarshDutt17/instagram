@@ -48,6 +48,8 @@ export default function Header({
         })
     }
 
+    const avatarPath = avatarsUrl(profileUsername);
+
     useEffect(() => {
         const isLoggedInUserFollowingProfile = async () => {
             const isFollowing = await isUserFollowingProfile(user.username, profileUserId);
@@ -72,7 +74,7 @@ export default function Header({
                     <img
                         className="rounded-full h-40 w-40 flex"
                         alt={`${profileUsername}-avatar`}
-                        src={avatarsUrl(profileUsername)}
+                        src={avatarPath}
                         onError={event => {
                             event.target.src = "/images/avatars/default.jpg";
                             event.onerror = null;

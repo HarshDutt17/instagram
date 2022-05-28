@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import avatarsUrl from "../../helper/avatarsUrl";
 import useUser from "../../hooks/use-users";
 import Suggestions from "./suggestion";
 import User from "./user";
@@ -7,8 +9,8 @@ export default function Sidebar() {
     // console.log('folowing', following);
     return (
         <div className="p-4 mobiles:hidden">
-            <User  username={username} fullName={fullName} />
-            <Suggestions userId={userId} following={following} loggedInUserDocId={docId}/>
+            <User username={username} fullName={fullName}/>
+            <Suggestions userId={userId} following={following} loggedInUserDocId={docId} />
         </div>
     )
 }
