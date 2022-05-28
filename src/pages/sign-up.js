@@ -37,7 +37,7 @@ export default function SignUp(){
                 // console.log(createdUserResult, createdUserResult.user)
                     
                 await createdUserResult.user.updateProfile({
-                    displayName: username
+                    displayName: username.toLowerCase(),
                 });
 
                 // firebase user collection (create a document)
