@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 export default function Image ( {src , caption}) {
     return(
-        <div>
+        <div className='flex justify-center'>
             <img src={src} alt={caption} />
         </div>
     )
