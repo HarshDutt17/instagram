@@ -47,7 +47,7 @@ export default function Header({
         if (avatarImage == null) return;
         const imageRef = ref(storage, `avatars/${user.username}.jpg`)
         uploadBytes(imageRef, avatarImage).then(() => {
-            alert('Avatar uploaded')
+            alert('Avatar uploaded, Refresh to see your new avatar')
         })
     }
 
