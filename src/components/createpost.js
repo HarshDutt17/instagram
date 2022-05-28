@@ -23,8 +23,9 @@ export default function CreatePost({ createP, setCreateP, userId }) {
         if (postImage == null || photoId==null) return;
         const imageRef = ref(storage, `images/${photoId}.jpg`)
         uploadBytes(imageRef, postImage).then(() => {
+            alert("Image is being uploaded");
             uploadToFirestore();
-            alert('Image uploaded')
+            alert('Image uploaded');
         })
     }
 
