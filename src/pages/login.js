@@ -48,7 +48,7 @@ export default function Login(){
                 <div className="flex flex-col items-center bg-white p-4 border border-gray-primary mb-4 rounded mobiles:pb-8">
 
                     <h1 className="flex justify-center w-full mobiles:my-4">
-                        <img src="/images/logo.png" alt="Instagram" className="mt-2 w-6/12 "/>
+                        <img fetchpriority="high" src="/images/logo.png" alt="Instagram" className="mt-2 w-6/12 "/>
                     </h1>
                     {error && <p className="mb-4 text-xs text-red-primary">{error}</p>}
 
